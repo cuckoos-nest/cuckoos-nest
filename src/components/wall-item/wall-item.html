@@ -20,12 +20,12 @@
     </ion-row>
   </ion-grid>
 
-  <img [src]="upload.image" (click)="goToImage()" />
+  <img *ngIf="upload" [src]="upload.image" (click)="goToImage()" />
 
   <ion-grid>
     <ion-row>
       <ion-col col-5>
-        <img [src]="photo?.image" ngClass="photo" (click)="goToPhoto()" />
+        <img *ngIf="photo" [src]="photo.image" ngClass="photo" (click)="goToPhoto()" />
       </ion-col>
       <ion-col col-3>
         <ion-badge (click)="showLikers()" color="primary">{{ (likes | async)?.length }} Likes</ion-badge>

@@ -34,6 +34,10 @@ export class NotificationsPage {
     });
   }
 
+  ionViewDidLeave(): void {
+    this.navCtrl.popToRoot();
+  }
+
   private notificationTypeToResource(type: NotificationType) {
     return "NOTIFICATION_" + NotificationType[type].toUpperCase();
   }
