@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchQuery" animated="true" placeholder="{{'SEARCH' | translate}}"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar mode="ios">
+    <ion-segment [(ngModel)]="searchType" mode="ios" (ionChange)="onSegmentChange()">
+      <ion-segment-button value="photos">
+        Nests
+      </ion-segment-button>
+      <ion-segment-button value="uploads" hidden="true">
+        Cuckoos
+      </ion-segment-button>
+      <ion-segment-button value="members">
+        Members
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-toolbar mode="ios" *ngIf="searchType == 'photos'">
+    <ion-scroll scrollX="true" ngClass="categories-scroller">
+      <div (click)="selectCategory(category)" [ngClass]="{'category': true, 'selected': (selectedCategory && selectedCategory.$key == category.$key)}"
+        *ngFor="let category of categories | async">
+        <img [src]="category.image" />
+        <p>{{ category.name }}</p>
+      </div>
+    </ion-scroll>
+  </ion-toolbar>
+
+  <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
+
+  <div [ngSwitch]="searchType" *ngIf="isLoaded">
+    <ion-list *ngSwitchCase="'uploads'">
+      <ion-item text-wrap *ngFor="let upload of (filteredUserUploads | orderBy:'!likesCount')" (click)="goToUpload(upload)">
+        <ion-thumbnail item-left>
+          <img [src]="upload.image">
+        </ion-thumbnail>
+        <h2>
+          {{ (upload.user | user | async)?.displayName }}
+        </h2>
+        <p>
+          {{ upload.description }}
+        </p>
+      </ion-item>
+    </ion-list>
+
+    <div *ngSwitchCase="'photos'">
+      <ion-list>
+        <ion-list-header *ngIf="filteredPhotos.length == 0">
+          No Results
+        </ion-list-header>
+        <ion-list-header *ngIf="filteredPhotos.length > 0">
+          {{ selectedCategory ? selectedCategory.name : 'All Categories' }}
+        </ion-list-header>
+      </ion-list>
+
+      <gallery *ngIf="isLoaded && filteredPhotos.length > 0" [items]="filteredPhotos | orderBy:'title'" [titleMember]="getPhotoTitle"
+        [imageMember]="getPhotoImage" (itemClick)="goToPhoto($event)"></gallery>
+    </div>
+
+    <div *ngSwitchCase="'members'">
+      <ion-list *ngIf="searchQuery.length == 0">
+        <ion-list-header>
+          Recent
+        </ion-list-header>
+
+        <ion-item *ngFor="let member of (recentMemberSearches | async)" (click)="goToUser(member)">
+          <ion-avatar item-left>
+            <img [src]="member.image">
+          </ion-avatar>
+          <h2>{{ member.displayName }}</h2>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="searchQuery.length > 0">
+        <ion-list-header *ngIf="filteredMembers.length == 0">
+          No Results
+        </ion-list-header>
+
+        <ion-item *ngFor="let member of (filteredMembers | orderBy:'displayName')" (click)="goToUser(member)">
+          <ion-avatar item-left>
+            <img [src]="member.image">
+          </ion-avatar>
+          <h2>{{ member.displayName }}</h2>
+          <p *ngIf="member.uploadsCount == 0">No cuckoos yet :(</p>
+          <p *ngIf="member.uploadsCount == 1">Posted one cuckoo</p>
+          <p *ngIf="member.uploadsCount > 1">Posted {{ member.uploadsCount }} cuckoos</p>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

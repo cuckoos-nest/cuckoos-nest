@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-buttons start>
+        <button ion-button icon-only (click)="share()">
+                  <ion-icon name="checkmark"></ion-icon>
+              </button>
+      </ion-buttons>
+
+      <ion-title>
+        Edit Image
+      </ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div ngClass="preview">
+    <img [src]="upload.image" ngClass="user-image" />
+    <img [src]="upload.photo.image" ngClass="photo-image" />
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="upload.description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

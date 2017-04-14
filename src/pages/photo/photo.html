@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> {{photo.title}} </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid ngClass="header">
+    <ion-row align-items-center>
+      <ion-col col-4 text-center>
+        <img [src]="photo.image" ngClass="rounded-image" />
+      </ion-col>
+
+      <ion-col col-8>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6 ngClass="counter">
+              <div ngClass="counter-value">{{ (userUploads | async)?.length || '0' }}</div>
+              <div ngClass="counter-title">Cuckoos</div>
+            </ion-col>
+            <ion-col col-6 ngClass="counter">
+              <div ngClass="counter-value">{{ followersPhotoCount | async }}</div>
+              <div ngClass="counter-title">Followers</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 text-center>
+              <button (click)="follow()" ion-button round icon-right outline>
+                {{ followPhoto ? 'Following' : 'Follow' }}
+                <ion-icon [name]="followPhoto ? 'star' : 'star-outline'"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
+
+  <div class="empty-text" *ngIf="!(userUploads | async)?.length">No Cuckoos yet. :(</div>
+  <gallery *ngIf="isLoaded && (userUploads | async)?.length" [items]="userUploads | async" [imageMember]="getPhotoImage" (itemClick)="uploadClicked($event)"></gallery>
+
+  <ion-fab center bottom>
+    <button ion-fab color="light" (click)="takePhoto()"><ion-icon name="camera"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>

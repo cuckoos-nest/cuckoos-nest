@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+    </ion-buttons>
+
+    <ion-title>
+      Comments
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list ngClass="write-comment">
+  <ion-item>
+    <ion-label floating>Write your comment...</ion-label>
+    <ion-textarea [(ngModel)]="commentText" autofocus></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <button [disabled]="!commentText || commentText.length == 0" clear ion-button (click)="send()">Send</button>
+  </ion-item>
+</ion-list>
+
+<ion-content #content>
+  <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
+
+  <ion-list *ngIf="isLoaded" ngClass="comments-list">
+    <ion-item text-wrap *ngFor="let comment of (comments | async)" (press)="onHold(comment)">
+      <ion-thumbnail item-left>
+        <img [src]="(comment.user | user | async)?.image">
+      </ion-thumbnail>
+      <h2>
+        {{ (comment.user | user | async)?.displayName }}
+      </h2>
+      <p>
+        {{ comment.text }}
+      </p>
+
+
+    </ion-item>
+  </ion-list>
+</ion-content>

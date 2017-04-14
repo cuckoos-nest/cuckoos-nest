@@ -1,0 +1,88 @@
+wall-item {
+    .title {
+        font-weight: bold;
+        margin: 10px;
+    }
+
+    .title img {
+        vertical-align: middle;
+        width: 24px;
+    }
+
+    .like-button:not(.selected) {
+        color: #a5c6ff;
+    }
+
+    .like-button.selected {
+        text-shadow: 1px 1px 10px #a5c6ff;
+    }
+
+    .options {
+        margin-top: -5px;
+        margin-right: -25px;
+    }
+
+    .commentCount {
+        margin-left: -5px;
+    }
+
+    .user {
+        color: black;
+        font-weight: bold;
+        font-family: arial;
+        font-size: 18px;
+        display: inline-block;    
+        text-decoration: none !important;
+        margin-top: 10px;
+        
+    }
+
+    .description {
+        display: block;
+    }
+
+    .displayCount {
+        margin-left: 25px;
+            margin-top: -35px;
+    }
+
+    .time {
+        color: #999;
+        font-weight: bold;
+        font-size: 10px;
+        display: inline-block;
+    }
+
+    .photo {
+        width: 11rem;
+        margin-top: -80px;
+        margin-left: 10px;
+        box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+        border: 3px solid white;
+        border-radius: 3px;
+        position: relative;
+    }
+
+    .profile {
+    
+    
+        border-radius: 50%;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .lowerCase {
+        text-transform: none;
+        font-size: 15px;
+    }
+
+    .likeIcon {
+        margin-top: -30px;
+        margin-left: 18px;
+    }
+
+    .commentIcon {
+        margin-top: -30px;
+        margin-left:30px;
+    }
+}

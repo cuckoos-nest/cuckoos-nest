@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ category.name }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
+
+  <gallery *ngIf="isLoaded" [items]="photos | async | orderBy:'title'" [titleMember]="getPhotoTitle" [imageMember]="getPhotoImage"
+    (itemClick)="photoClicked($event)"></gallery>
+</ion-content>

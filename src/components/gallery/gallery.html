@@ -1,0 +1,15 @@
+<ion-grid>
+  <ion-row *ngFor="let row of rows">
+    <ion-col *ngFor="let item of row">
+      <div id="container">
+        <img *ngIf="imageMember" [src]="imageMember(item)" [hidden]="!loaded" (click)="itemClicked(item)" [alt]="titleMember ? titleMember(item) : ''"
+          (load)="loaded = true" />
+        <div class="spinner-container" *ngIf="!loaded">
+          <ion-spinner></ion-spinner>
+        </div>
+        <p *ngIf="labelMember" id="label"> {{labelMember(item)}} </p>
+      </div>
+      <div class="title" *ngIf="titleMember">{{ titleMember(item) }}</div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

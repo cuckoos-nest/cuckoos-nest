@@ -1,0 +1,17 @@
+edit-upload-page {
+    .preview {
+        position: relative;
+
+        .user-image {
+            width: 100%;
+            position: relative;
+        }
+
+        .photo-image {
+            width: 100px;
+            position: absolute;
+            top: 30px;
+            left: 70px;
+        }
+    }
+}

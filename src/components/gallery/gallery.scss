@@ -1,0 +1,25 @@
+gallery {
+    text-align: center;
+
+    .spinner-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    ion-col {
+        text-align: center;
+    }
+
+    ion-spinner {
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+#label {
+    position:absolute;    
+    color:white;
+    font-size: 70%;
+}
