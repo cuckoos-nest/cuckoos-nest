@@ -12,12 +12,12 @@
   <ion-grid>
     <ion-row>
       <ion-col col-3 ngClass="counter" (click)="showUploads()">
-        <div ngClass="counter-value">{{ user.uploadsCount }}</div>
+        <div ngClass="counter-value">{{ user.uploadsCount || '0' }}</div>
         <div ngClass="counter-title">Cuckoos</div>
       </ion-col>
 
       <ion-col col-3 ngClass="counter" (click)="showPhotos()">
-        <div ngClass="counter-value">{{ user.followingPhotoCount }}</div>
+        <div ngClass="counter-value">{{ user.followingPhotoCount || '0' }}</div>
         <div ngClass="counter-title">Nests</div>
       </ion-col>
 
