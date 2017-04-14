@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar class="dark-toolbar">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button *ngIf="isOwner" ion-button icon-only (click)="removePhoto()">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+
+      <button class="button" (click)="like()" ion-button icon-only>
+                <ion-icon [hidden]="isLiked" name="thumbs-up" class="icon" ></ion-icon>
+                <ion-icon [hidden]="!isLiked" name="thumbs-up"  class="light"></ion-icon>
+            </button>
+      <button class="button" (click)="comment()" ion-button icon-only>
+                <ion-icon  name="text"></ion-icon>
+            </button>
+
+    </ion-buttons>
+
+    <ion-title>
+      {{ upload.user.displayName }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="background">
+    <ion-scroll zooming="true" min-zoom="1" max-zoom="2">
+      <img class="image-viewer" [src]="upload.image" />
+    </ion-scroll>
+
+    <div class="footer">
+      <div class="description">
+        {{ upload.description }}
+      </div>
+      <div class="dateTime">
+        {{ upload.createdAt | date: 'MMM d, HH:mm' }}
+      </div>
+    </div>
+  </div>
+
+</ion-content>

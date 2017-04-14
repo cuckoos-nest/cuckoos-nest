@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ title }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list *ngIf="isLoaded">
+    <ion-item text-wrap *ngFor="let user of (isAsync ? (users | async) : users)">
+      <ion-thumbnail item-left>
+        <img [src]="(user)?.image">
+      </ion-thumbnail>
+      <h2>
+        {{ (user)?.displayName }}
+      </h2>
+    </ion-item>
+  </ion-list>
+
+  <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
+</ion-content>

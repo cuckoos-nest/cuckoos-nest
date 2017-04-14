@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ 'WELCOME' | translate:currentUser }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
+
+  <ion-list *ngIf="isLoaded">
+    <wall-item *ngFor="let upload of currentWall | async" [upload]="upload"></wall-item>
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="isLoaded" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

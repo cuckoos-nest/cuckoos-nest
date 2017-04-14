@@ -1,0 +1,37 @@
+user-page {
+    .counter {
+        text-align: center;
+
+        .counter-value {
+            font-size: 2em;
+        }
+
+        .counter-title {
+            color: gray;
+            font-size: 0.8em;
+            text-align: center;
+        }
+    }
+
+    .counter-section {
+        @extend .middle-vertical;
+        font-size: 0.9em;
+        color: #F1F1F1;
+    }
+
+    .user-name {
+        margin: 20px 0px;
+
+        text-align: center;
+
+        h2 {
+            margin: 5px 0px;
+            font-weight: normal;
+        }
+    }
+
+    .gallery-container {
+        border-top: 2px solid #F1F1F1; 
+        background-color: #F7F7F7;
+    }
+}

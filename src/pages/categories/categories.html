@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{'CATEGORIES' | translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchQuery" placeholder="{{'SEARCH' | translate}}"></ion-searchbar>
+
+  <ion-list>
+    <button ion-item *ngFor="let category of filteredCategories" (click)="goToCategory(category)">{{category.name}}</button>
+  </ion-list>
+</ion-content>

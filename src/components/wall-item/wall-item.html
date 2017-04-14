@@ -1,0 +1,59 @@
+<ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 (click)="goToUser()">
+        <img [src]="user?.image" ngClass="profile" />
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <div class="user" (click)="goToUser()">{{ user?.displayName }}</div>
+        </ion-row>
+        <ion-row>
+          <div class="time">{{ timeSinceUpload }}</div>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2>
+        <button class="options" ion-button clear large (click)="options()"> 
+          <ion-icon name="ios-more"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <img [src]="upload.image" (click)="goToImage()" />
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-5>
+        <img [src]="photo?.image" ngClass="photo" (click)="goToPhoto()" />
+      </ion-col>
+      <ion-col col-3>
+        <ion-badge (click)="showLikers()" color="primary">{{ (likes | async)?.length }} Likes</ion-badge>
+      </ion-col>
+      <ion-col col-3>
+        <ion-badge (click)="viewComments()" color="primary" class="commentCount">{{ commentsCount | async }} Comments</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-card-content>
+    <div class="description">{{ upload.description }}</div>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button class="lowerCase" ion-button icon-left clear small (click)="like()" [disabled]="isLikeLoading" [ngClass]="{'like-button': true, 'selected': isLiked}"> 
+        <ion-icon name="thumbs-up"></ion-icon>
+        Like        
+      </button>
+    </ion-col>
+
+    <ion-col>
+      <button class="lowerCase" ion-button icon-left clear small (click)="viewComments()">
+        <ion-icon name="text"></ion-icon>
+        <div>Comment</div>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
