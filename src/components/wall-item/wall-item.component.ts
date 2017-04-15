@@ -136,7 +136,7 @@ export class WallItemComponent implements OnInit {
 
       buttons: [
         {
-          text: 'View',
+          text: 'View Original',
 
           handler: () => {
             this.goToImage();
