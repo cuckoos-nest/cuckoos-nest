@@ -35,7 +35,7 @@ export class CommentsPage {
     this.isLoaded = !this.userUpload.commentsCount;
     this.comments.subscribe(() => {
       this.isLoaded = true;
-      setTimeout(() => this.scrollToBottom(500), 500);
+      this.scrollToBottom(500);
     });
   }
 
@@ -52,7 +52,9 @@ export class CommentsPage {
   }
 
   private scrollToBottom(speed = 0) {
-    this.content.scrollTo(0, this.content.getContentDimensions().scrollHeight, speed);
+    setTimeout(() => {
+      this.content.scrollTo(0, this.content.getContentDimensions().scrollHeight, speed);
+    }, 500);
   }
 
   private dismiss() {
