@@ -20,7 +20,7 @@
 
   <ion-list *ngIf="isLoaded">
     <ion-item *ngFor="let notification of notifications | async" (click)="onNotificationClicked(notification)">
-      <ion-avatar item-left>
+      <ion-avatar item-left *ngIf="(notification.from | user | async)">
         <img [src]="(notification.from | user | async)?.image">
       </ion-avatar>
       <h2>{{ (notification.from | user | async)?.displayName }}</h2>
