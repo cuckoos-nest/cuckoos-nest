@@ -163,7 +163,6 @@ export class WallItemComponent implements OnInit {
     if (this.isOwner) {
       let button = {
         text: 'Delete',
-        role: 'destructive',
         handler: () => {
           this.removeUpload();
         }
@@ -173,7 +172,9 @@ export class WallItemComponent implements OnInit {
     }
 
     actionSheet.addButton({
-      text: 'Report', handler: () => {
+      role: 'destructive',
+      text: 'Report', 
+      handler: () => {
 
       }
     });
