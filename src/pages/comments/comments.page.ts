@@ -43,7 +43,7 @@ export class CommentsPage {
     let comment: CommentModel = {
       user: this.authService.currentUser.$key,
       text: this.commentText,
-      createdAt: new Date(),
+      createdAt: new Date().toLocaleString(),
     };
 
     this.commentService.create(comment, this.userUpload.$key).then(() => this.scrollToBottom(500));
