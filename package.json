@@ -28,10 +28,10 @@
     "firebase": "^3.7.2",
     "ionic-angular": "3.0.1",
     "ionicons": "3.0.0",
+    "moment": "^2.18.1",
     "ng2-translate": "^5.0.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.4.0",
-    "timeago.js": "^3.0.1",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
