@@ -8,7 +8,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content #content>
+<ion-content #content *ngIf="user">
   <ion-grid>
     <ion-row>
       <ion-col col-3 ngClass="counter" (click)="showUploads()">
