@@ -18,8 +18,8 @@
               <div ngClass="counter-value">{{ (userUploads | async)?.length || '0' }}</div>
               <div ngClass="counter-title">Cuckoos</div>
             </ion-col>
-            <ion-col col-6 ngClass="counter">
-              <div ngClass="counter-value">{{ followersPhotoCount | async }}</div>
+            <ion-col col-6 ngClass="counter" (click)="viewFollowers()">
+              <div ngClass="counter-value">{{ followersPhotoCount }}</div>
               <div ngClass="counter-title">Followers</div>
             </ion-col>
           </ion-row>

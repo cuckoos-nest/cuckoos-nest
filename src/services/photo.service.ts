@@ -50,7 +50,6 @@ export class PhotoService {
     public getFollowersCount(photoKey : string) : Observable<number> {
         return this.af.database.list(`/photo-followers/${photoKey}`)
             .map(references => references.map(ref => ref.$key))
-            .map(keys => keys.map(key => this.userService.get(key)))
             .map(followers => followers.length);
     }
 
@@ -60,5 +59,12 @@ export class PhotoService {
 
     public unfollow(photoKey : string) : firebase.Promise<void> {
         return this.af.database.object(`/photo-followers/${photoKey}/${this.authService.currentUser.$key}`).set(null);
+    }
+
+    public getFollowers(photoKey: string) {
+        return this.af.database.list(`/photo-followers/${photoKey}`)
+            .map(references => references.map(ref => ref.$key))
+            .map(keys => keys.map(key => this.userService.get(key)))
+            .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
     }
 }
