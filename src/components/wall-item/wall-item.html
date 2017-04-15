@@ -2,11 +2,11 @@
   <ion-grid>
     <ion-row>
       <ion-col col-2 (click)="goToUser()">
-        <img [src]="user?.image" ngClass="profile" />
+        <img *ngIf="user" [src]="user.image" ngClass="profile" />
       </ion-col>
       <ion-col>
         <ion-row>
-          <div class="user" (click)="goToUser()">{{ user?.displayName }}</div>
+          <div *ngIf="user" class="user" (click)="goToUser()">{{ user.displayName }}</div>
         </ion-row>
         <ion-row>
           <div class="time">{{ timeSinceUpload }}</div>
