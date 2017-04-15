@@ -10,8 +10,7 @@ import { UserModel } from './../../models/user.model';
 import { PhotoModel } from './../../models/photo.model';
 import { UploadModel } from './../../models/upload.model';
 import { Component, Input, OnInit } from '@angular/core';
-
-import timeago from 'timeago.js';
+import * as moment from 'moment';
 
 @Component({
   selector: 'wall-item',
@@ -88,7 +87,7 @@ export class WallItemComponent implements OnInit {
   }
 
   private get timeSinceUpload() {
-    return timeago().format((new Date(this.upload.createdAt)));
+    return moment().from(this.upload.createdAt, true) + " ago";
   }
 
   private viewComments() {
