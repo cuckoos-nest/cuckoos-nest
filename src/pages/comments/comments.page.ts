@@ -46,17 +46,18 @@ export class CommentsPage {
       createdAt: new Date().toLocaleString(),
     };
 
-    this.commentService.create(comment, this.userUpload.$key).then(() => this.scrollToBottom(500));
+    this.commentService.create(comment, this.userUpload.$key);
+    this.scrollToBottom(500);
 
     this.commentText = "";
   }
 
-  private scrollToBottom(speed = 0) {
+  private scrollToBottom(speed = 0, delay = 0) {
     setTimeout(() => {
-      if (this.content) {
-        this.content.scrollTo(0, this.content.getContentDimensions().scrollHeight, speed);
+      if (this.content._scroll) {
+        this.content.scrollToBottom(speed);
       }
-    }, 500);
+    }, delay);
   }
 
   private dismiss() {
