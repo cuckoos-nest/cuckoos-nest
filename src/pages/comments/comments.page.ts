@@ -53,7 +53,9 @@ export class CommentsPage {
 
   private scrollToBottom(speed = 0) {
     setTimeout(() => {
-      this.content.scrollTo(0, this.content.getContentDimensions().scrollHeight, speed);
+      if (this.content) {
+        this.content.scrollTo(0, this.content.getContentDimensions().scrollHeight, speed);
+      }
     }, 500);
   }
 
