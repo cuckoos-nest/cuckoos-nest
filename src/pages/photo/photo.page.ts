@@ -19,7 +19,7 @@ export class PhotoPage {
   private userUploads: Observable<UploadModel[]>;
   private isLoaded: Boolean;
   private followPhoto: Boolean;
-  private followersPhotoCount: Observable<number>;
+  private followersPhotoCount: number;
 
   constructor(private platform: Platform, private modalCtrl: ModalController,
               private authService: AuthService, private navController: NavController,
@@ -32,7 +32,7 @@ export class PhotoPage {
 
   ionViewDidLoad(): void {
     this.userUploads = this.uploadService.getAllByPhoto(this.photo.$key);
-    this.followersPhotoCount = this.photoService.getFollowersCount(this.photo.$key);
+    this.photoService.getFollowersCount(this.photo.$key).subscribe(count => this.followersPhotoCount = count);
     this.userUploads.subscribe(() => this.isLoaded = true);
     this.userService.isFollowingPhoto(this.photo.$key).subscribe(isFollow => this.followPhoto = isFollow);
   }
@@ -98,6 +98,19 @@ export class PhotoPage {
       upload: upload
     });
     fullScreenImageModal.present();
+  }
+
+  private viewFollowers() {
+    if (this.followersPhotoCount == 0) {
+      return;
+    }
+
+    let usersModal = this.modalCtrl.create('UsersPage', {
+      title: 'Likes',
+      users: this.photoService.getFollowers(this.photo.$key)
+    });
+
+    usersModal.present();
   }
 
 }
