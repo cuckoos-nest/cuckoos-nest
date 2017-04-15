@@ -47,8 +47,7 @@ export class CommentsPage {
       createdAt: new Date().toLocaleString(),
     };
 
-    this.commentService.create(comment, this.userUpload.$key);
-    this.scrollToBottom(500);
+    this.commentService.create(comment, this.userUpload.$key).then(() => this.scrollToBottom(500));
 
     this.commentText = "";
   }
