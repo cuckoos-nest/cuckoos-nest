@@ -40,6 +40,10 @@ export class CommentsPage {
     });
   }
 
+  ionViewDidEnter() {
+    this.scrollToBottom(500);
+  }
+
   private send() {
     let comment: CommentModel = {
       user: this.authService.currentUser.$key,
