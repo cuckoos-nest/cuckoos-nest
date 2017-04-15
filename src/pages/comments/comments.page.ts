@@ -77,11 +77,11 @@ export class CommentsPage {
       message: 'Are you sure that you want to remove this comment?',
       buttons: [
         {
-          text: 'Disagree',
+          text: 'Cancel',
           handler: () => { }
         },
         {
-          text: 'Agree',
+          text: 'OK',
           handler: () => {
             this.commentService.remove(this.userUpload.$key, comment.$key);
           }
