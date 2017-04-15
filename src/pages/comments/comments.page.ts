@@ -8,9 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content, AlertController, ViewController } from 'ionic-angular';
 
-@IonicPage({
-  name: 'comments-page'
-})
+@IonicPage()
 @Component({
   selector: 'comments-page',
   templateUrl: 'comments.html',
@@ -30,13 +28,10 @@ export class CommentsPage {
     if (this.navParams.get('upload')) {
       this.userUpload = this.navParams.get('upload');
     }
-
-    this.comments = this.commentService.getAll(this.userUpload.$key);
-
   }
 
   ionViewDidLoad(): void {
-
+    this.comments = this.commentService.getAll(this.userUpload.$key);
     this.isLoaded = !this.userUpload.commentsCount;
     this.comments.subscribe(() => {
       this.isLoaded = true;

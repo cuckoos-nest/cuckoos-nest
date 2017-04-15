@@ -1,5 +1,3 @@
-import { UsersPage } from './../users/users.page';
-import { ImageViewerPage } from './../image-viewer/image-viewer.page';
 import { AuthService } from './../../services/auth.service';
 import { UploadService } from './../../services/upload.service';
 import { UserService } from './../../services/user.service';
@@ -9,9 +7,7 @@ import { UserModel } from './../../models/user.model';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content, LoadingController, ToastController, ModalController } from 'ionic-angular';
 
-@IonicPage({
-    name: 'user-page'
-})
+@IonicPage()
 @Component({
     selector: 'user-page',
     templateUrl: 'user.html',
@@ -38,7 +34,9 @@ export class UserPage {
         else {
             this.user = this.authService.currentUser;
         }
+    }
 
+    ionViewDidLoad(): void {
         this.uploads = this.userUploadsService.getAllByUser(this.user.$key);
         this.uploads.subscribe(() => this.isLoaded = true);
 
@@ -46,9 +44,7 @@ export class UserPage {
 
         this.followers = this.userService.getFollowers(this.user.$key);
         this.following = this.userService.getFollowing(this.user.$key);
-    }
-
-    ionViewDidLoad(): void {
+        
         if (!this.isMyProfile) {
             this.userService.isFollowingUser(this.user.$key).subscribe(isFollowing => this.isFollowedByMe = isFollowing);
         }
@@ -59,7 +55,7 @@ export class UserPage {
     }
 
     private uploadClicked(upload: UploadModel) {
-        let fullScreenImageModal = this.modalCtrl.create(ImageViewerPage, {
+        let fullScreenImageModal = this.modalCtrl.create('ImageViewerPage', {
             upload: upload
         });
         fullScreenImageModal.present();
@@ -83,7 +79,7 @@ export class UserPage {
     }
 
     private showFollowing() {
-        let usersModal = this.modalCtrl.create(UsersPage, {
+        let usersModal = this.modalCtrl.create('UsersPage', {
             title: 'Following',
             users: this.following
         });
@@ -92,7 +88,7 @@ export class UserPage {
     }
 
     private showFollowers() {
-        let usersModal = this.modalCtrl.create(UsersPage, {
+        let usersModal = this.modalCtrl.create('UsersPage', {
             title: 'Followers',
             users: this.followers,
         });

@@ -1,8 +1,3 @@
-import { NotificationsPage } from './../notifications/notifications.page';
-import { UserPage } from './../user/user.page';
-import { SearchPage } from './../search/search.page';
-import { CategoriesPage } from './../categories/categories.page';
-import { WallPage } from './../wall/wall.page';
 import { Observable } from 'rxjs/Observable';
 import { NotificationService } from './../../services/notification.service';
 import { Component } from '@angular/core';
@@ -22,11 +17,11 @@ export class MainMenuPage {
   private newNotifications: Observable<number>;
 
   constructor(private notificationService: NotificationService) {
-    this.wallTab = WallPage;
-    this.searchTab = SearchPage;
-    this.addTab = CategoriesPage;
-    this.profileTab = UserPage;
-    this.notificationsTab = NotificationsPage;
+    this.wallTab = 'WallPage';
+    this.searchTab = 'SearchPage';
+    this.addTab = 'CategoriesPage';
+    this.profileTab = 'UserPage';
+    this.notificationsTab = 'NotificationsPage';
   }
 
   ionViewDidLoad() {

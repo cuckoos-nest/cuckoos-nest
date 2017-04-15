@@ -3,15 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UploadService } from '../../services/upload.service';
 
-/**
- * Generated class for the EditUpload page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-@IonicPage({
-  name: 'edit-upload-page'
-})
+@IonicPage()
 @Component({
   selector: 'edit-upload-page',
   templateUrl: 'edit-upload.html',

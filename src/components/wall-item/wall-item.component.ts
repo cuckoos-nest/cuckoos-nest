@@ -1,6 +1,3 @@
-import { UsersPage } from './../../pages/users/users.page';
-import { CommentsPage } from './../../pages/comments/comments.page';
-import { ImageViewerPage } from './../../pages/image-viewer/image-viewer.page';
 import { CommentService } from './../../services/comment.service';
 import { PhotoService } from './../../services/photo.service';
 import { UploadService } from './../../services/upload.service';
@@ -15,15 +12,7 @@ import { UploadModel } from './../../models/upload.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { timeSince } from './../../../shared/date';
-import { UserPage } from '../../pages/user/user.page';
-import { PhotoPage } from '../../pages/photo/photo.page';
 
-/**
- * Generated class for the WallItem component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'wall-item',
   templateUrl: 'wall-item.html'
@@ -69,20 +58,20 @@ export class WallItemComponent implements OnInit {
 
 
   private goToUser() {
-    this.nav.push(UserPage, {
+    this.nav.push('UserPage', {
       user: this.user
     });
   }
 
   private goToImage() {
-    let fullScreenImageModal = this.modalCtrl.create(ImageViewerPage, {
+    let fullScreenImageModal = this.modalCtrl.create('ImageViewerPage', {
       upload: this.upload
     });
     fullScreenImageModal.present();
   }
 
   private goToPhoto() {
-    this.nav.push(PhotoPage, {
+    this.nav.push('PhotoPage', {
       photo: this.photo
     });
   }
@@ -103,7 +92,7 @@ export class WallItemComponent implements OnInit {
   }
 
   private viewComments() {
-    let commentsModal = this.modalCtrl.create(CommentsPage, {
+    let commentsModal = this.modalCtrl.create('CommentsPage', {
       upload: this.upload
     });
     commentsModal.present();
@@ -113,7 +102,7 @@ export class WallItemComponent implements OnInit {
     if (this.likesCount == 0)
       return;
 
-    let usersModal = this.modalCtrl.create(UsersPage, {
+    let usersModal = this.modalCtrl.create('UsersPage', {
       title: 'Likes',
       users: this.likeService.getAllByUpload(this.upload.$key)
     });

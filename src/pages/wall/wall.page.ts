@@ -6,9 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-@IonicPage({
-  name: 'wall-page'
-})
+@IonicPage()
 @Component({
   selector: 'wall-page',
   templateUrl: 'wall.html',
@@ -22,12 +20,12 @@ export class WallPage {
 
   constructor(private loadingCtrl: LoadingController, private uploadService: UploadService,
               private authService: AuthService) {
-    this.currentWall = this.uploadService.getWall();
-    this.loadCount = 5;
-    this.currentUser = this.authService.currentUser;
   }
 
   ionViewDidLoad(): void {
+    this.loadCount = 5;
+    this.currentUser = this.authService.currentUser;
+    this.currentWall = this.uploadService.getWall();
     this.currentWall.subscribe(() => this.isLoaded = true);
   }
 
