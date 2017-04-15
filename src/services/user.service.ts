@@ -14,7 +14,7 @@ export class UserService {
     public get(uid: string): Observable<UserModel> {
         return this.af.database.object(`/users/${uid}`);
     }
-
+    
     public getAll(): Observable<UserModel[]> {
         return this.af.database.list("/users");
     }
