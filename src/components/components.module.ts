@@ -1,3 +1,4 @@
+import { ImageWithThumbnailComponent } from './image-with-thumbnail/image-with-thumbnail.component';
 import { TranslateStaticLoader } from 'ng2-translate';
 import { TranslateLoader } from 'ng2-translate';
 import { Http } from '@angular/http';
@@ -12,6 +13,7 @@ import { CommonModule } from "@angular/common";
   declarations: [
     GalleryComponent,
     WallItemComponent,
+    ImageWithThumbnailComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,7 @@ import { CommonModule } from "@angular/common";
     GalleryComponent,
     WallItemComponent,
     TranslateModule,
-
+    ImageWithThumbnailComponent,
   ]
 })
 export class ComponentsModule {}

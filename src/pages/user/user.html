@@ -37,7 +37,6 @@
 
   <div class="user-name">
     <img [src]="user.image" ngClass="rounded-image" />
-
     <h2>
       {{ user.displayName }}
     </h2>
@@ -46,7 +45,8 @@
   </div>
 
   <div #uploadsRef class="gallery-container">
-    <gallery *ngIf="isLoaded" columns="2" [items]="uploads | async" [imageMember]="getUploadImage" (itemClick)="uploadClicked($event)"></gallery>
+    <gallery *ngIf="isLoaded" columns="2" [items]="uploads | async" [imageMember]="getUploadImage" 
+            [thumbnailMember]="getUploadThumbnail" (itemClick)="uploadClicked($event)"></gallery>
     <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
   </div>
 </ion-content>

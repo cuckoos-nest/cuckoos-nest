@@ -113,4 +113,8 @@ export class PhotoPage {
     usersModal.present();
   }
 
+  getUploadThumbnail = (upload: UploadModel) => {
+      return this.photoService.get(upload.photo).map(x => x.image);
+  }
+
 }

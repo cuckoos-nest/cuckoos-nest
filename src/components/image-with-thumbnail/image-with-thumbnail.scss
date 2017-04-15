@@ -1,0 +1,15 @@
+image-with-thumbnail {
+    div {
+        text-align: left;
+    }
+
+    .thumbnail {
+        width: 35%;
+        margin-top: -80px;
+        margin-left: 10px;
+        box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+        border: 3px solid white;
+        border-radius: 3px;
+        position: relative;
+    }
+}

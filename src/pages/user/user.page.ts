@@ -1,3 +1,4 @@
+import { PhotoService } from './../../services/photo.service';
 import { AuthService } from './../../services/auth.service';
 import { UploadService } from './../../services/upload.service';
 import { UserService } from './../../services/user.service';
@@ -27,7 +28,8 @@ export class UserPage {
     constructor(private navController: NavController, private modalCtrl: ModalController,
                 private navParams: NavParams, private authService: AuthService,
                 private userService: UserService, private userUploadsService: UploadService,
-                private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+                private loadingCtrl: LoadingController, private toastCtrl: ToastController,
+                private photoService: PhotoService) {
         if (this.navParams.get('user')) {
             this.user = this.navParams.get('user');
         }
@@ -52,6 +54,10 @@ export class UserPage {
 
     private getUploadImage(upload: UploadModel): string {
         return upload.image;
+    }
+
+    getUploadThumbnail = (upload: UploadModel) => {
+        return this.photoService.get(upload.photo).map(x => x.image);
     }
 
     private uploadClicked(upload: UploadModel) {
