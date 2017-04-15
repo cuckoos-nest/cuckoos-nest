@@ -81,4 +81,15 @@ export class ImageViewerPage {
     this.viewCtrl.dismiss();
   }
 
+  private goToProfile() {
+
+    let user: UserModel;
+
+    this.userService.get(this.upload.user).subscribe(t=> user = t);
+
+    this.navCtrl.push('UserPage', {
+        user: user
+    });
+  }
+
 }
