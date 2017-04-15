@@ -32,7 +32,16 @@
     </ion-item>
   </ion-list>
 
-<ion-list ngClass="write-comment">
+
+
+
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-list ngClass="write-comment">
   <ion-item>
     <ion-label floating>Write your comment...</ion-label>
     <ion-textarea [(ngModel)]="commentText" autofocus></ion-textarea>
@@ -41,7 +50,5 @@
     <button [disabled]="!commentText || commentText.length == 0" clear ion-button (click)="send()">Send</button>
   </ion-item>
 </ion-list>
-
-</ion-content>
-
-
+  </ion-toolbar>
+</ion-footer>
