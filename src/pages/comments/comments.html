@@ -12,6 +12,16 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-list ngClass="write-comment">
+  <ion-item>
+    <ion-label floating>Write your comment...</ion-label>
+    <ion-textarea [(ngModel)]="commentText" autofocus></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <button [disabled]="!commentText || commentText.length == 0" clear ion-button (click)="send()">Send</button>
+  </ion-item>
+</ion-list>
+
 
 <ion-content #content>
   <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
@@ -31,24 +41,4 @@
 
     </ion-item>
   </ion-list>
-
-
-
-
-
 </ion-content>
-
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-list ngClass="write-comment">
-  <ion-item>
-    <ion-label floating>Write your comment...</ion-label>
-    <ion-textarea [(ngModel)]="commentText" autofocus></ion-textarea>
-  </ion-item>
-  <ion-item>
-    <button [disabled]="!commentText || commentText.length == 0" clear ion-button (click)="send()">Send</button>
-  </ion-item>
-</ion-list>
-  </ion-toolbar>
-</ion-footer>
