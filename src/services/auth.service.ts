@@ -26,9 +26,9 @@ export class AuthService {
         return this._authState;
     }
 
-    private _currentUser: UserModel;
+    private static _currentUser: UserModel;
     public get currentUser(): UserModel {
-        return this._currentUser;
+        return AuthService._currentUser;
     }
 
     constructor(private auth$: AngularFireAuth, private af: AngularFire, 
@@ -61,7 +61,7 @@ export class AuthService {
                 this._authState = state;
                 if (state) {
                     this.af.database.object("/users/" + state.uid).subscribe(user => {
-                        this._currentUser = user;
+                        AuthService._currentUser = user;
                         observer.next(state);
                     });
                 }

@@ -1,4 +1,3 @@
-import { CommentsPage } from './../comments/comments.page';
 import { UploadModel } from './../../models/upload.model';
 import { UserModel } from './../../models/user.model';
 import { AuthService } from './../../services/auth.service';
@@ -9,10 +8,7 @@ import { UploadService } from "../../services/upload.service";
 import { UserService } from "../../services/user.service";
 import { Observable } from 'rxjs/Observable';
 
-
-@IonicPage({
-  name: 'image-viewer-page'
-})
+@IonicPage()
 @Component({
   selector: 'image-viewer-page',
   templateUrl: 'image-viewer.html',
@@ -30,13 +26,13 @@ export class ImageViewerPage {
               private navParams: NavParams, private uploadService: UploadService,
               private userService: UserService, private authService: AuthService) {
     this.upload = this.navParams.get('upload');
-    this.uid = this.authService.currentUser.$key;
-    this.isOwner = (this.uid == this.upload.user);
     this.userService.get(this.upload.user).subscribe(t=> this.displayName = t.displayName);
 
   }
 
   ionViewDidLoad(): void {
+    this.uid = this.authService.currentUser.$key;
+    this.isOwner = (this.uid == this.upload.user);
     this.likeService.getUids(this.upload.$key).subscribe(likes => {
       this.isLiked = (likes.indexOf(this.authService.currentUser.$key) != -1);
     });
@@ -76,7 +72,7 @@ export class ImageViewerPage {
   }
 
   private comment() {
-    this.navCtrl.push(CommentsPage, {
+    this.navCtrl.push('CommentsPage', {
       upload: this.upload
     });
   }

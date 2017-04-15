@@ -1,13 +1,10 @@
-import { EditUploadPage } from './../edit-upload/edit-upload.page';
 import { PhotoModel } from './../../models/photo.model';
 import { AuthService } from './../../services/auth.service';
 import { UploadModel } from './../../models/upload.model';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-@IonicPage({
-  name: 'webcam-page'
-})
+@IonicPage()
 @Component({
   selector: 'webcam-page',
   templateUrl: 'webcam.html',
@@ -47,7 +44,7 @@ export class WebcamPage {
       commentsCount: 0,
     };
 
-    this.navController.push(EditUploadPage, {
+    this.navController.push('EditUploadPage', {
       upload: upload
     });
   }

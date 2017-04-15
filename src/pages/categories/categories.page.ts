@@ -1,12 +1,9 @@
-import { CategoryPage } from './../category/category.page';
 import { CategoryService } from './../../services/category.service';
 import { CategoryModel } from './../../models/category.model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-@IonicPage({
-  name: 'categories-page'
-})
+@IonicPage()
 @Component({
   selector: 'categories-page',
   templateUrl: 'categories.html',
@@ -52,7 +49,7 @@ export class CategoriesPage {
   }
 
   private goToCategory(selectedCategory: CategoryModel): void {
-    this.nav.push(CategoryPage, {
+    this.nav.push('CategoryPage', {
       category: selectedCategory
     });
   }

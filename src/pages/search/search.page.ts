@@ -1,6 +1,3 @@
-import { PhotoPage } from './../photo/photo.page';
-import { UserPage } from './../user/user.page';
-import { ImageViewerPage } from './../image-viewer/image-viewer.page';
 import { UploadService } from './../../services/upload.service';
 import { UserService } from './../../services/user.service';
 import { CategoryService } from './../../services/category.service';
@@ -14,9 +11,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Subscription } from "rxjs/Subscription";
 
-@IonicPage({
-  name: 'search-page'
-})
+@IonicPage()
 @Component({
   selector: 'search-page',
   templateUrl: 'search.html',
@@ -45,11 +40,11 @@ export class SearchPage {
   constructor(private nav: NavController, private categoryService: CategoryService,
               private modalCtrl: ModalController, private userUploadsService: UploadService,
               private photoService: PhotoService, private userService: UserService) {
-    this.categories = this.categoryService.getAll();
-    this.recentMemberSearches = this.userService.getRecentSearches();
   }
 
   ionViewDidLoad(): void {
+    this.categories = this.categoryService.getAll();
+    this.recentMemberSearches = this.userService.getRecentSearches();
     this.searchType = 'photos';
     this.onSegmentChange();
   }
@@ -111,19 +106,19 @@ export class SearchPage {
 
   private goToUser(user: UserModel) {
     this.userService.addRecentSearch(user.$key);
-    this.nav.push(UserPage, {
+    this.nav.push('UserPage', {
       user: user
     });
   }
 
   private goToPhoto(photo: PhotoModel) {
-    this.nav.push(PhotoPage, {
+    this.nav.push('PhotoPage', {
       photo: photo
     });
   }
 
   private goToUpload(upload: UploadModel) {
-    let fullScreenImageModal = this.modalCtrl.create(ImageViewerPage, {
+    let fullScreenImageModal = this.modalCtrl.create('ImageViewerPage', {
       upload: upload
     });
     fullScreenImageModal.present();

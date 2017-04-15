@@ -1,6 +1,3 @@
-import { ImageViewerPage } from './../image-viewer/image-viewer.page';
-import { EditUploadPage } from './../edit-upload/edit-upload.page';
-import { WebcamPage } from './../webcam/webcam.page';
 import { PhotoService } from './../../services/photo.service';
 import { UserService } from './../../services/user.service';
 import { UploadService } from './../../services/upload.service';
@@ -12,9 +9,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 
-@IonicPage({
-  name: 'photo-page'
-})
+@IonicPage()
 @Component({
   selector: 'photo-page',
   templateUrl: 'photo.html',
@@ -33,11 +28,11 @@ export class PhotoPage {
               private userService: UserService, private toastCtrl: ToastController,
               private camera: Camera) {
     this.photo = this.navParams.get('photo');
-    this.userUploads = this.uploadService.getAllByPhoto(this.photo.$key);
-    this.followersPhotoCount = this.photoService.getFollowersCount(this.photo.$key);
   }
 
   ionViewDidLoad(): void {
+    this.userUploads = this.uploadService.getAllByPhoto(this.photo.$key);
+    this.followersPhotoCount = this.photoService.getFollowersCount(this.photo.$key);
     this.userUploads.subscribe(() => this.isLoaded = true);
     this.userService.isFollowingPhoto(this.photo.$key).subscribe(isFollow => this.followPhoto = isFollow);
   }
@@ -73,7 +68,7 @@ export class PhotoPage {
   }
 
   private takePhotoFromBroswer() {
-    this.navController.push(WebcamPage, {
+    this.navController.push('WebcamPage', {
       photo: this.photo
     });
   }
@@ -92,14 +87,14 @@ export class PhotoPage {
         commentsCount: 0,
       };
 
-      this.navController.push(EditUploadPage, {
+      this.navController.push('EditUploadPage', {
         upload: upload
       });
     });
   }
 
   private uploadClicked(upload: UploadModel) {
-    let fullScreenImageModal = this.modalCtrl.create(ImageViewerPage, {
+    let fullScreenImageModal = this.modalCtrl.create('ImageViewerPage', {
       upload: upload
     });
     fullScreenImageModal.present();

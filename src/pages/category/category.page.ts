@@ -1,4 +1,3 @@
-import { PhotoPage } from './../photo/photo.page';
 import { PhotoModel } from './../../models/photo.model';
 import { CategoryService } from './../../services/category.service';
 import { PhotoService } from './../../services/photo.service';
@@ -9,9 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-@IonicPage({
-  name: 'category-page'
-})
+@IonicPage()
 @Component({
   selector: 'category-page',
   templateUrl: 'category.html',
@@ -26,15 +23,15 @@ export class CategoryPage {
               private photoService: PhotoService, private categoryService: CategoryService,
               private loadingCtrl: LoadingController) {
     this.category = this.navParams.get('category');
-    this.photos = this.photoService.getAllByCategory(this.category.$key);
   }
 
   ionViewDidLoad(): void {
+    this.photos = this.photoService.getAllByCategory(this.category.$key);
     this.photos.subscribe(() => this.isLoaded = true);
   }
 
   private photoClicked(photo: PhotoModel) {
-    this.navController.push(PhotoPage, {
+    this.navController.push('PhotoPage', {
       photo: photo
     });
   }

@@ -1,3 +1,6 @@
+import { ServicesModule } from './../../services/services.module';
+import { PipesModule } from './../../pipes/pipes.module';
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EditUploadPage } from './edit-upload.page';
@@ -8,6 +11,9 @@ import { EditUploadPage } from './edit-upload.page';
   ],
   imports: [
     IonicPageModule.forChild(EditUploadPage),
+    ComponentsModule,
+    PipesModule,
+    ServicesModule,
   ],
   exports: [
     EditUploadPage

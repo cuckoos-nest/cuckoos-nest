@@ -1,4 +1,3 @@
-import { WallItemPage } from './../wall-item/wall-item.page';
 import { NotificationModel } from './../../models/notification.model';
 import { Observable } from 'rxjs/Observable';
 import { UserModel } from './../../models/user.model';
@@ -9,9 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UploadService } from "../../services/upload.service";
 import { NotificationType } from '../../enums/notification-type.enum';
 
-@IonicPage({
-  name: 'notifications-page'
-})
+@IonicPage()
 @Component({
   selector: 'notifications-page',
   templateUrl: 'notifications.html',
@@ -24,10 +21,10 @@ export class NotificationsPage {
 
   constructor(private navCtrl: NavController, private userUploadsService: UploadService,
               private notificationService: NotificationService, private userService: UserService) {
-    this.notifications = this.notificationService.getAll();
   }
 
   ionViewDidLoad(): void {
+    this.notifications = this.notificationService.getAll();
     this.notifications.subscribe(notifications => {
       this.isLoaded = true;
       this.isEmpty = notifications.length == 0;
@@ -46,7 +43,7 @@ export class NotificationsPage {
     switch (notification.link) {
       case 'upload':
         this.userUploadsService.get(notification.linkKey).subscribe(upload => {
-          this.navCtrl.push(WallItemPage, {
+          this.navCtrl.push('WallItemPage', {
             upload
           });
         });

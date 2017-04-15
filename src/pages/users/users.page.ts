@@ -3,9 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
-@IonicPage({
-  name: 'users-page'
-})
+@IonicPage()
 @Component({
   selector: 'users-page',
   templateUrl: 'users.html',
