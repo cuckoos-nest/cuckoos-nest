@@ -13,7 +13,7 @@ export class GalleryComponent {
 
   @Input() titleMember: (item: any) => string;
 
-  @Input() labelMember: (item: any) => string;
+  @Input() thumbnailMember: (item: any) => string;
 
   @Input() columns: number = 2;
 

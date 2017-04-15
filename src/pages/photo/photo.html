@@ -39,7 +39,8 @@
   <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
 
   <div class="empty-text" *ngIf="!(userUploads | async)?.length">No Cuckoos yet. :(</div>
-  <gallery *ngIf="isLoaded && (userUploads | async)?.length" [items]="userUploads | async" [imageMember]="getPhotoImage" (itemClick)="uploadClicked($event)"></gallery>
+  <gallery *ngIf="isLoaded && (userUploads | async)?.length" [items]="userUploads | async" [imageMember]="getPhotoImage" 
+          [thumbnailMember]="getUploadThumbnail" (itemClick)="uploadClicked($event)"></gallery>
 
   <ion-fab center bottom>
     <button ion-fab color="light" (click)="takePhoto()"><ion-icon name="camera"></ion-icon></button>
