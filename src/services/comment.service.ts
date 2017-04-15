@@ -18,7 +18,6 @@ export class CommentService {
         return this.af.database.list(`/upload-comments/${userUploadKey}/`)
             .map(references => references.map(ref => ref.$key))
             .map(keys => keys.map(key => this.get(key)))
-            .map(comments => comments.reverse())
             .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
     }
 
