@@ -28,7 +28,7 @@
 
   <ion-list *ngIf="isLoaded" ngClass="comments-list">
     <ion-item text-wrap *ngFor="let comment of (comments | async)" (press)="onHold(comment)">
-      <ion-thumbnail item-left>
+      <ion-thumbnail *ngIf="(comment.user | user | async)" item-left>
         <img [src]="(comment.user | user | async)?.image">
       </ion-thumbnail>
       <h2>
