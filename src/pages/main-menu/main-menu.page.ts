@@ -27,7 +27,9 @@ export class MainMenuPage {
     this.addTab = CategoriesPage;
     this.profileTab = UserPage;
     this.notificationsTab = NotificationsPage;
+  }
 
+  ionViewDidLoad() {
     this.newNotifications = this.notificationService.countUnread();
   }
 
