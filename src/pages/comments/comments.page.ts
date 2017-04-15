@@ -7,6 +7,7 @@ import { UploadModel } from './../../models/upload.model';
 import { Observable } from 'rxjs/Observable';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content, AlertController, ViewController } from 'ionic-angular';
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -58,6 +59,10 @@ export class CommentsPage {
         this.content.scrollToBottom(speed);
       }
     }, delay);
+  }
+
+  private timeSince(dateTime: string) {
+    return moment().from(dateTime, true) + " ago";
   }
 
   private dismiss() {
