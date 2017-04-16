@@ -106,7 +106,7 @@ export class PhotoPage {
     }
 
     let usersModal = this.modalCtrl.create('UsersPage', {
-      title: 'Likes',
+      title: 'Followers',
       users: this.photoService.getFollowers(this.photo.$key)
     });
 
