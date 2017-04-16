@@ -20,7 +20,7 @@ export class CommentsPage {
   private commentText: string;
   private isLoaded: Boolean;
 
-  @ViewChild('content') content: Content;
+  @ViewChild('content') private content: Content;
 
   constructor(private alertCtrl: AlertController, private viewCtrl: ViewController,
               private commentService: CommentService, private uploadService: UploadService,
