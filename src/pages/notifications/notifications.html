@@ -13,7 +13,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content #content>
   <div *ngIf="isEmpty" ngClass="empty-text">EMPTY</div>
 
   <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>

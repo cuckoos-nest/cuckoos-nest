@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { UserModel } from './../../models/user.model';
 import { UserService } from './../../services/user.service';
 import { NotificationService } from './../../services/notification.service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { UploadService } from "../../services/upload.service";
 import { NotificationType } from '../../enums/notification-type.enum';
 
@@ -19,6 +19,8 @@ export class NotificationsPage {
   private isLoaded: Boolean;
   private isEmpty: Boolean;
 
+  @ViewChild('content') private content: Content;
+
   constructor(private navCtrl: NavController, private userUploadsService: UploadService,
               private notificationService: NotificationService, private userService: UserService) {
   }
@@ -29,6 +31,18 @@ export class NotificationsPage {
       this.isLoaded = true;
       this.isEmpty = notifications.length == 0;
     });
+  }
+
+  ionViewDidEnter() {
+    this.scrollTop(500);
+  }
+
+  private scrollTop(speed = 0, delay = 0) {
+    setTimeout(() => {
+      if (this.content._scroll) {
+        this.content.scrollToTop(speed);
+      }
+    }, delay);
   }
 
   private notificationTypeToResource(type: NotificationType) {
