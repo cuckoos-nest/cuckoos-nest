@@ -1,3 +1,4 @@
+import { ZoomableImageComponent } from './zoomable-image/zoomable-image.component';
 import { ImageWithThumbnailComponent } from './image-with-thumbnail/image-with-thumbnail.component';
 import { TranslateStaticLoader } from 'ng2-translate';
 import { TranslateLoader } from 'ng2-translate';
@@ -14,6 +15,7 @@ import { CommonModule } from "@angular/common";
     GalleryComponent,
     WallItemComponent,
     ImageWithThumbnailComponent,
+    ZoomableImageComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { CommonModule } from "@angular/common";
     WallItemComponent,
     TranslateModule,
     ImageWithThumbnailComponent,
+    ZoomableImageComponent,
   ]
 })
 export class ComponentsModule {}

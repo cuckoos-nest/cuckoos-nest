@@ -27,19 +27,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="background">
-    <ion-scroll zooming="true" min-zoom="1" max-zoom="2">
-      <img class="image-viewer" [src]="upload.image" />
-    </ion-scroll>
+<ion-content (window:resize)="resize($event)" (window:orientationchange)="orientationChange($event)">
+  <zoomable-image ngClass="image-viewer" [src]="upload.image" [parentSubject]="parentSubject"></zoomable-image>
 
-    <div class="footer">
-      <div class="description">
-        {{ upload.description }}
-      </div>
-      <div class="dateTime">
-        {{ upload.createdAt | date: 'MMM d, HH:mm' }}
-      </div>
+  <div class="footer">
+    <div class="description">
+      {{ upload.description }}
+    </div>
+    <div class="dateTime">
+      {{ upload.createdAt | date: 'MMM d, HH:mm' }}
     </div>
   </div>
 
