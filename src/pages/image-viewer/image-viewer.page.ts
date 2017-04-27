@@ -1,8 +1,9 @@
+import { Subject } from 'rxjs/Subject';
 import { UploadModel } from './../../models/upload.model';
 import { UserModel } from './../../models/user.model';
 import { AuthService } from './../../services/auth.service';
 import { LikeService } from './../../services/like.service';
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { UploadService } from "../../services/upload.service";
 import { UserService } from "../../services/user.service";
@@ -20,11 +21,13 @@ export class ImageViewerPage {
   private isLikeLoading: Boolean;
   private isLiked: Boolean;
   private displayName: string;
+  private parentSubject: Subject<any> = new Subject();
 
   constructor(private alertCtrl: AlertController, private viewCtrl: ViewController,
               private likeService: LikeService, private navCtrl: NavController,
               private navParams: NavParams, private uploadService: UploadService,
-              private userService: UserService, private authService: AuthService) {
+              private userService: UserService, private authService: AuthService,
+              private element: ElementRef) {
     this.upload = this.navParams.get('upload');
     this.userService.get(this.upload.user).subscribe(t=> this.displayName = t.displayName);
 
@@ -37,7 +40,24 @@ export class ImageViewerPage {
       this.isLiked = (likes.indexOf(this.authService.currentUser.$key) != -1);
     });
 
+    this.resize();
+  }
 
+  private resize() {
+    let width = this.element['nativeElement'].offsetWidth;
+    let height = this.element['nativeElement'].offsetHeight;
+
+    this.parentSubject.next({
+      width: width,
+      height: height,
+    });
+  }
+
+  private orientationChange(event) {
+    // TODO: See if you can remove timeout
+    window.setTimeout(() => {
+      this.resize();
+    }, 150);
   }
 
   private removePhoto() {
