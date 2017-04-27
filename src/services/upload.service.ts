@@ -41,9 +41,27 @@ export class UploadService {
             .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
     }
 
-    public getWall(): Observable<UploadModel[]> {
-        return this.af.database.list(`/walls/${this.authService.currentUser.$key}`)
+    public getWall(limitToLast: number): Observable<UploadModel[]> {
+        return this.af.database.list(`/walls/${this.authService.currentUser.$key}`, {
+            query: {
+                limitToLast
+            }
+        })
             .map(references => references.map(ref => ref.$key))
+            .map(keys => keys.map(key => this.get(key)))
+            .map(userUploads => userUploads.filter(x => x))
+            .map(userUploads => userUploads.reverse())
+            .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
+    }
+
+    public getWallOnce(limitToLast: number): Observable<UploadModel[]> {
+        return this.af.database.list(`/walls/${this.authService.currentUser.$key}`, {
+            query: {
+                limitToLast
+            },
+            preserveSnapshot: true
+        })
+            .map(references => references.map(ref => ref.key))
             .map(keys => keys.map(key => this.get(key)))
             .map(userUploads => userUploads.filter(x => x))
             .map(userUploads => userUploads.reverse())

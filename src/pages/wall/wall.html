@@ -7,10 +7,14 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
 
   <ion-list *ngIf="isLoaded">
-    <wall-item *ngFor="let upload of currentWall | async" [upload]="upload"></wall-item>
+    <wall-item *ngFor="let upload of currentWall; trackBy:trackWallItem" [upload]="upload"></wall-item>
   </ion-list>
 
   <ion-infinite-scroll *ngIf="isLoaded" (ionInfinite)="doInfinite($event)">

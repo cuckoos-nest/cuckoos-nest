@@ -25,6 +25,7 @@ export class MyApp {
   ngOnInit() {
     this._auth.signInWithFacebook()
       .subscribe(() => {
+        console.log('fuck', this._auth.currentUser);
         if (this._auth.authenticated) {
           this.rootPage = 'MainMenuPage';
         }
