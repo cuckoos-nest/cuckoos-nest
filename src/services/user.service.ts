@@ -70,4 +70,16 @@ export class UserService {
             .map(keys => keys.map(key => this.get(key)))
             .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
     }
+
+    public getPhotosFollowing(uid: string) {
+        return this.af.database.list(`/photo-followers/users-im-following/${uid}`)
+            .map(references => references.map(ref => ref.$key))
+            .map(keys => keys.map(key => this.get(key)))
+            .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
+    }
+
+    public getFollowingPhotos(uid: string) {
+        return this.af.database.object(`/users/${uid}/followingPhotoCount`)
+            .map(keyVal => keyVal.$value);
+    }
 }
