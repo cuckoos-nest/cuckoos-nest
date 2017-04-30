@@ -19,6 +19,7 @@ export class CommentsPage {
   private userUpload: UploadModel;
   private commentText: string;
   private isLoaded: Boolean;
+  
 
   @ViewChild('content') private content: Content;
 
@@ -49,6 +50,8 @@ export class CommentsPage {
       user: this.authService.currentUser.$key,
       text: this.commentText,
       createdAt: new Date().toLocaleString(),
+      likesCount: 0,
+      isLiked: false
     };
 
     this.commentService.create(comment, this.userUpload.$key).then(() => this.scrollToBottom(500));
@@ -66,6 +69,15 @@ export class CommentsPage {
 
   private timeSince(dateTime: string) {
     return moment().from(dateTime, true) + " ago";
+  }
+
+  private likeComment(comment: CommentModel){
+    console.log("log");
+      this.commentService.likeComment(comment.$key);
+  }
+
+  private unlikeComment(comment: CommentModel){
+      this.commentService.unlikeComment(comment.$key);
   }
 
   private dismiss() {

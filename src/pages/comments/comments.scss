@@ -8,12 +8,15 @@ comments-page {
         background-color: white;
     }
 
+  
+
     .comments-list {
         margin-bottom: 150px;
 
         .item {
             h2, h3 {
-                display: inline-block;
+                
+                font-weight: bold;
             }
 
             h3 {
@@ -29,6 +32,27 @@ comments-page {
                     height: 50px;
                 }
             }
+
+            time {
+                font-size: 10px;
+                color: gray;
+                display: block;
+                
+            }
+            
+            .heartIcon {
+                color: crimson;
+                display: inline-block;
+                margin-top: 12px;
+                font-weight: bold;
+                font-size: 13px;
+            }
+        }
+
+        .div {
+            display: inline-block;
+            color: gray;
+            font-size: 11px;
         }
     }
 }

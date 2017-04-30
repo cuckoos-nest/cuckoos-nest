@@ -2,12 +2,14 @@ import { CommentModel } from './../models/comment.model';
 import { Observable } from 'rxjs/Observable';
 import { AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/combineLatest';
 
 @Injectable()
 export class CommentService {
-    constructor(private af: AngularFire) {
+    constructor(private af: AngularFire, private authService: AuthService) {
     }
 
     public get(commentKey: string): Observable<CommentModel> {
@@ -32,5 +34,17 @@ export class CommentService {
 
     public count(userUploadKey: string): Observable<number> {
         return this.af.database.object(`/uploads/${userUploadKey}/commentsCount`).map(x => x.$exists() ? x.$value : 0);
+    }
+
+    public likeComment(commentKey: string): void {
+        this.af.database.object(`/comment-likes/${commentKey}/${this.authService.currentUser.$key}`).set(true);
+    }
+
+    public unlikeComment(commentKey: string) : void{
+        this.af.database.object(`/comment-likes/${commentKey}/${this.authService.currentUser.$key}`).set(null);
+    }
+
+    public likesCount(commentKey: string): Observable<string> {
+        return this.af.database.object(`/comments/${commentKey}/likesCount`).map(x => x.$exists() ? x.$value : 0);
     }
 }

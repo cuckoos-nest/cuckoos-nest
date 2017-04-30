@@ -28,18 +28,29 @@
 
   <ion-list *ngIf="isLoaded" ngClass="comments-list">
     <ion-item text-wrap *ngFor="let comment of (comments | async)" (press)="onHold(comment)">
-      <ion-thumbnail *ngIf="(comment.user | user | async)" item-left>
+      <ion-thumbnail *ngIf="(comment.user | user | async)" item-left >
         <img [src]="(comment.user | user | async)?.image">
       </ion-thumbnail>
+
+      <ion-thumbnail item-left  >
+        <ion-icon name="heart" (click)="likeComment(comment)"  class="heartIcon"></ion-icon>
+        <div class="heartIcon">{{ comment.likesCount || 0}}</div>
+      </ion-thumbnail>
+
       <h2>
         {{ (comment.user | user | async)?.displayName }}
+        <div class="div"> 
+           {{ timeSince(comment.createdAt) }}</div>
       </h2>
-      <h3>
-        {{ timeSince(comment.createdAt) }}
-      </h3>
+  
+      <p> </p>
+      <p> </p>
       <p>
         {{ comment.text }}
       </p>
+
+      
+
 
 
     </ion-item>

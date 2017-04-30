@@ -3,4 +3,6 @@ export class CommentModel extends BaseModel {
     user: string;
     text: string;
     createdAt: string;
+    likesCount: number;
+    isLiked: Boolean;
 }
