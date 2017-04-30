@@ -1,3 +1,4 @@
+import { PhotoModel } from './../../models/photo.model';
 import { PhotoService } from './../../services/photo.service';
 import { AuthService } from './../../services/auth.service';
 import { UploadService } from './../../services/upload.service';
@@ -11,7 +12,7 @@ import { IonicPage, NavController, NavParams, Content, LoadingController, ToastC
 @IonicPage()
 @Component({
     selector: 'user-page',
-    templateUrl: 'user.html',
+    templateUrl: 'user.html'
 })
 export class UserPage {
     private user: UserModel;
@@ -21,6 +22,7 @@ export class UserPage {
     private isLoaded: Boolean;
     private followers: Observable<UserModel[]>;
     private following: Observable<UserModel[]>;
+    private followingPhotos: Observable<PhotoModel[]>;
 
     @ViewChild('content') content: Content;
     @ViewChild('uploadsRef') uploadsRef: ElementRef;
@@ -46,6 +48,7 @@ export class UserPage {
 
         this.followers = this.userService.getFollowers(this.user.$key);
         this.following = this.userService.getFollowing(this.user.$key);
+        this.followingPhotos = this.userService.getFollowingPhotos(this.user.$key);
         
         if (!this.isMyProfile) {
             this.userService.isFollowingUser(this.user.$key).subscribe(isFollowing => this.isFollowedByMe = isFollowing);

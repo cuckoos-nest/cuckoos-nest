@@ -17,7 +17,7 @@
       </ion-col>
 
       <ion-col col-3 ngClass="counter">
-        <div ngClass="counter-value">{{ user.followingPhotoCount || '0' }}</div>
+        <div ngClass="counter-value">{{ (followingPhotos | async) }}</div>
         <div ngClass="counter-title">Nests</div>
       </ion-col>
 
