@@ -62,18 +62,20 @@
             <div class="inlineBlock" >
               <h2>
                 {{ (comment.user | user | async)?.displayName }} 
-                <div class="timeAgo" right>( {{ timeSince(comment.createdAt) }} ) </div>
+                
               </h2>
               
               <p> </p>
               <p> </p>
         
-              <p> {{ comment.text }} </p>
+              <p > {{ comment.text }} </p>
 
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
+
+      <div class="timeAgo" right>( {{ timeSince(comment.createdAt) }} ) </div>
 
     </ion-item>
   </ion-list>
