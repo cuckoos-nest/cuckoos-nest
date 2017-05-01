@@ -1,21 +1,49 @@
 comments-page {
     .write-comment {
         position: fixed;
-        bottom: 0;
+        top: 10%;
         width: 100%;
         z-index: 999;
         margin: 0;
         background-color: white;
     }
 
-  
+    .box {
+        border-top: 10px;
+    }
+
+    .commentsOrderBy {
+        display: inline-block;
+        font-size: 14px;
+        color: gray;
+
+
+    }
+
+    .commentContent {
+        width: 100%;
+        margin-left: -20px;
+    }
+
+     .commentsOrderByChecked {
+        display: inline-block;
+        font-size: 14px;
+        color: gray;
+        font-weight: bold;
+        
+    }
+
+    .commentsHeader {
+        margin-top: 20px;
+        padding-bottom: -10px;
+    }
 
     .comments-list {
         margin-bottom: 150px;
 
         .item {
             h2, h3 {
-                
+                display: inline-block;
                 font-weight: bold;
             }
 
@@ -42,17 +70,61 @@ comments-page {
             
             .heartIcon {
                 color: crimson;
+                font-size: 13px;
+            }
+
+            .heartIconBlack {
+                color: black;
+                font-size: 13px;
+            }
+
+            .likeText {
+                color: crimson;
                 display: inline-block;
-                margin-top: 12px;
                 font-weight: bold;
                 font-size: 13px;
+                margin-top: -1px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+              .likeTextBlack {
+                color: black;
+                display: inline-block;
+                font-weight: bold;
+                font-size: 13px;
+                margin-top: -1px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .likeContent {
+                display: inline-block;
+                 top: 50%;
+                position: fixed;
+                margin-top:-15px;
+               
+            }
+
+            .item-inner {
+               
+}
+
+            .heartIconUnlike {
+                color: black;
+                display: inline-block;
+                
+                font-weight: bold;
+                font-size: 14px;
             }
         }
 
-        .div {
+        .timeAgo {
             display: inline-block;
             color: gray;
             font-size: 11px;
+        }
+        
+        .inlineBlock {
+            display: inline-block;
         }
     }
 }

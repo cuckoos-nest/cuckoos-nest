@@ -47,4 +47,8 @@ export class CommentService {
     public likesCount(commentKey: string): Observable<string> {
         return this.af.database.object(`/comments/${commentKey}/likesCount`).map(x => x.$exists() ? x.$value : 0);
     }
+    
+    public isLiked(commentKey: string) : Observable<Boolean> {
+        return this.af.database.object(`/comment-likes/${commentKey}/${this.authService.currentUser.$key}`).map(x => x.$exists() ? true : false);
+    }
 }

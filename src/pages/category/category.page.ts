@@ -17,6 +17,7 @@ export class CategoryPage {
   private photos: Observable<PhotoModel[]>
   private category: CategoryModel;
   private isLoaded: Boolean;
+  private commentsLiked: Boolean[];
 
   constructor(private authService: AuthService, private userService: UserService,
               private navController: NavController, private navParams: NavParams,
