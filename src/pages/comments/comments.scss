@@ -51,6 +51,9 @@ comments-page {
                 font-size: 0.8em;
             }
 
+            p { word-break: break-all }
+
+
             ion-thumbnail {
                 min-width: 50px;    
                 min-height: 50px;
@@ -104,10 +107,7 @@ comments-page {
                
             }
 
-            .item-inner {
-               
-}
-
+            
             .heartIconUnlike {
                 color: black;
                 display: inline-block;
@@ -118,10 +118,14 @@ comments-page {
         }
 
         .timeAgo {
-            display: inline-block;
-            color: gray;
-            font-size: 11px;
+           color: gray;
+           font-size: 11px;
+           display: block !important;
+           width: 100% !important;
+           text-align:right !important;
         }
+
+        
         
         .inlineBlock {
             display: inline-block;
