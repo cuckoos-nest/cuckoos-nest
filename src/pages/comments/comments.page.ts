@@ -31,7 +31,7 @@ export class CommentsPage {
               private userService: UserService, private authService: AuthService,
               private navParams: NavParams) {
 
-    this.filterBy = "createdAt";
+    this.filterBy = "!createdAt";
     if (this.navParams.get('upload')) {
       this.userUpload = this.navParams.get('upload');
     }
@@ -45,9 +45,7 @@ export class CommentsPage {
     this.comments.subscribe(  t => {
       this.isLoaded = true;
  //     this.scrollToBottom(500);
-      // Todo: iterate over the comments. 
-      // check for each comment if i am in the list of the likes and change the isLiked boolean.
-      // in addition: the isLiked is in the commentMode, I don't wait it to be stored in DB.
+
     });
   }
 
@@ -60,8 +58,7 @@ export class CommentsPage {
       user: this.authService.currentUser.$key,
       text: this.commentText,
       createdAt: new Date().toLocaleString(),
-      likesCount: 0,
-      isLiked: false
+      likesCount: 0
     };
 
     this.commentService.create(comment, this.userUpload.$key).then(() => this.scrollToBottom(500));
@@ -84,7 +81,6 @@ export class CommentsPage {
   private isLiked(comment: CommentModel){
       let result ;
       this.commentService.isLiked(comment.$key).subscribe( x=> result = x);
-      console.log("comment reuslt " +  result);
       return result;
   }
 
