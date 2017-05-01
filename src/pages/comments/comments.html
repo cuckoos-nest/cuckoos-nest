@@ -28,7 +28,7 @@
   </div>
 
     <ion-item class="commentsHeader">
-      <ion-label > {{ userUpload.commentsCount }} Responses</ion-label>
+      <ion-label > {{ commentsCount }} Responses</ion-label>
         <div item-right>  
           <ion-label  class="commentsOrderBy" (click)="orderByLiked()" *ngIf="!isMostLikedOrdered"> Most Liked</ion-label>
           <ion-label  class="commentsOrderByChecked" (click)="orderByLiked()" *ngIf="isMostLikedOrdered"> Most Liked</ion-label>
