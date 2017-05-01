@@ -6,8 +6,10 @@ import { CommentModel } from './../../models/comment.model';
 import { UploadModel } from './../../models/upload.model';
 import { Observable } from 'rxjs/Observable';
 import { Component, ViewChild } from '@angular/core';
+import {Injectable, Pipe} from 'angular2/core';
 import { IonicPage, NavController, NavParams, Content, AlertController, ViewController } from 'ionic-angular';
 import * as moment from 'moment';
+
 
 @IonicPage()
 @Component({
@@ -19,7 +21,8 @@ export class CommentsPage {
   private userUpload: UploadModel;
   private commentText: string;
   private isLoaded: Boolean;
-  
+  private isMostLikedOrdered: Boolean;
+  private filterBy: string;
 
   @ViewChild('content') private content: Content;
 
@@ -27,22 +30,29 @@ export class CommentsPage {
               private commentService: CommentService, private uploadService: UploadService,
               private userService: UserService, private authService: AuthService,
               private navParams: NavParams) {
+
+    this.filterBy = "createdAt";
     if (this.navParams.get('upload')) {
       this.userUpload = this.navParams.get('upload');
     }
+
+    this.isMostLikedOrdered = false;
   }
 
   ionViewDidLoad(): void {
     this.comments = this.commentService.getAll(this.userUpload.$key);
     this.isLoaded = !this.userUpload.commentsCount;
-    this.comments.subscribe(() => {
+    this.comments.subscribe(  t => {
       this.isLoaded = true;
-      this.scrollToBottom(500);
+ //     this.scrollToBottom(500);
+      // Todo: iterate over the comments. 
+      // check for each comment if i am in the list of the likes and change the isLiked boolean.
+      // in addition: the isLiked is in the commentMode, I don't wait it to be stored in DB.
     });
   }
 
   ionViewDidEnter() {
-    this.scrollToBottom(500);
+   // this.scrollToBottom(500);
   }
 
   private send() {
@@ -71,8 +81,14 @@ export class CommentsPage {
     return moment().from(dateTime, true) + " ago";
   }
 
+  private isLiked(comment: CommentModel){
+      let result ;
+      this.commentService.isLiked(comment.$key).subscribe( x=> result = x);
+      console.log("comment reuslt " +  result);
+      return result;
+  }
+
   private likeComment(comment: CommentModel){
-    console.log("log");
       this.commentService.likeComment(comment.$key);
   }
 
@@ -82,6 +98,16 @@ export class CommentsPage {
 
   private dismiss() {
     this.viewCtrl.dismiss();
+  }
+ 
+  private orderByLiked(){
+    this.filterBy = "!likesCount";
+    this.isMostLikedOrdered = true;
+  }
+   
+  private orderByDate(){
+    this.filterBy = "!createdAt";
+    this.isMostLikedOrdered = false;
   }
 
   public onHold(comment: CommentModel) {

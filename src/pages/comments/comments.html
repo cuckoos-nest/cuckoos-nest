@@ -12,46 +12,68 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-list ngClass="write-comment">
-  <ion-item>
-    <ion-label floating>Write your comment...</ion-label>
-    <ion-textarea [(ngModel)]="commentText" autofocus></ion-textarea>
-  </ion-item>
-  <ion-item>
-    <button [disabled]="!commentText || commentText.length == 0" clear ion-button (click)="send()">Send</button>
-  </ion-item>
-</ion-list>
 
 
 <ion-content #content>
   <ion-spinner *ngIf="!isLoaded" ngClass="middle-vertical"></ion-spinner>
 
   <ion-list *ngIf="isLoaded" ngClass="comments-list">
-    <ion-item text-wrap *ngFor="let comment of (comments | async)" (press)="onHold(comment)">
-      <ion-thumbnail *ngIf="(comment.user | user | async)" item-left >
-        <img [src]="(comment.user | user | async)?.image">
-      </ion-thumbnail>
 
-      <ion-thumbnail item-left  >
-        <ion-icon name="heart" (click)="likeComment(comment)"  class="heartIcon"></ion-icon>
-        <div class="heartIcon">{{ comment.likesCount || 0}}</div>
-      </ion-thumbnail>
+<ion-item>
+    <ion-label floating>Write your comment...</ion-label>
+    <ion-textarea [(ngModel)]="commentText" class="box" autofocus></ion-textarea>
+  </ion-item>
+  <div item-right>
+    <button [disabled]="!commentText || commentText.length == 0"  clear ion-button (click)="send()" floating>Send</button>
+  </div>
 
-      <h2>
-        {{ (comment.user | user | async)?.displayName }}
-        <div class="div"> 
-           {{ timeSince(comment.createdAt) }}</div>
-      </h2>
-  
-      <p> </p>
-      <p> </p>
-      <p>
-        {{ comment.text }}
-      </p>
+    <ion-item class="commentsHeader">
+      <ion-label > {{ userUpload.commentsCount }} Responses</ion-label>
+        <div item-right>  
+          <ion-label  class="commentsOrderBy" (click)="orderByLiked()" *ngIf="!isMostLikedOrdered"> Most Liked</ion-label>
+          <ion-label  class="commentsOrderByChecked" (click)="orderByLiked()" *ngIf="isMostLikedOrdered"> Most Liked</ion-label>
+          <ion-label  class="commentsOrderBy" (click)="orderByDate()" *ngIf="isMostLikedOrdered"> Recently</ion-label>
+          <ion-label  class="commentsOrderByChecked" (click)="orderByDate()" *ngIf="!isMostLikedOrdered"> Recently</ion-label>
+        </div>
+    </ion-item>
 
-      
+    <ion-item text-wrap *ngFor="let comment of (comments | async) | orderBy:filterBy" (press)="onHold(comment)" >
 
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2> 
+            <ion-avatar *ngIf="(comment.user | user | async)" item-left >
+              <img [src]="(comment.user | user | async)?.image">
+            </ion-avatar>
+          </ion-col>
 
+          <ion-col col-2 >
+            <div class="likeContent" *ngIf="isLiked(comment)" >
+              <ion-icon name="heart" (click)="unlikeComment(comment)" class="heartIcon" ></ion-icon>
+              <div class="likeText" >{{ comment.likesCount || 0 }}</div>
+            </div>
+             <div class="likeContent" *ngIf="!isLiked(comment)" >
+              <ion-icon name="heart" (click)="likeComment(comment)" class="heartIconBlack" ></ion-icon>
+              <div class="likeTextBlack" >{{ comment.likesCount || 0 }}</div>
+            </div>
+          </ion-col>
+
+          <ion-col col-8 class="commentContent">
+            <div class="inlineBlock" >
+              <h2>
+                {{ (comment.user | user | async)?.displayName }} 
+                <div class="timeAgo" right>( {{ timeSince(comment.createdAt) }} ) </div>
+              </h2>
+              
+              <p> </p>
+              <p> </p>
+        
+              <p> {{ comment.text }} </p>
+
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     </ion-item>
   </ion-list>
