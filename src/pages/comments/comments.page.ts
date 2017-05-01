@@ -23,6 +23,7 @@ export class CommentsPage {
   private isLoaded: Boolean;
   private isMostLikedOrdered: Boolean;
   private filterBy: string;
+  private commentsCount: number;
 
   @ViewChild('content') private content: Content;
 
@@ -44,9 +45,12 @@ export class CommentsPage {
     this.isLoaded = !this.userUpload.commentsCount;
     this.comments.subscribe(  t => {
       this.isLoaded = true;
+      this.commentsCount = t.length;
  //     this.scrollToBottom(500);
 
     });
+
+    
   }
 
   ionViewDidEnter() {
