@@ -28,12 +28,12 @@
   </div>
 
     <ion-item class="commentsHeader">
-      <ion-label > {{ commentsCount }} Responses</ion-label>
+      <ion-label > {{ commentsCount }} Comments</ion-label>
         <div item-right>  
           <ion-label  class="commentsOrderBy" (click)="orderByLiked()" *ngIf="!isMostLikedOrdered"> Most Liked</ion-label>
           <ion-label  class="commentsOrderByChecked" (click)="orderByLiked()" *ngIf="isMostLikedOrdered"> Most Liked</ion-label>
-          <ion-label  class="commentsOrderBy" (click)="orderByDate()" *ngIf="isMostLikedOrdered"> Recently</ion-label>
-          <ion-label  class="commentsOrderByChecked" (click)="orderByDate()" *ngIf="!isMostLikedOrdered"> Recently</ion-label>
+          <ion-label  class="commentsOrderBy" (click)="orderByDate()" *ngIf="isMostLikedOrdered"> Recent</ion-label>
+          <ion-label  class="commentsOrderByChecked" (click)="orderByDate()" *ngIf="!isMostLikedOrdered"> Recent</ion-label>
         </div>
     </ion-item>
 
@@ -65,9 +65,7 @@
                 
               </h2>
               
-              <p> </p>
-              <p> </p>
-        
+            
               <p > {{ comment.text }} </p>
 
             </div>

@@ -65,7 +65,8 @@ export class CommentsPage {
       likesCount: 0
     };
 
-    this.commentService.create(comment, this.userUpload.$key).then(() => this.scrollToBottom(500));
+    this.commentService.create(comment, this.userUpload.$key);
+    //.then(() => this.scrollToBottom(500));
 
     this.commentText = "";
   }
