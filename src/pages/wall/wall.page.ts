@@ -5,6 +5,8 @@ import { UserModel } from './../../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Push, PushToken } from '@ionic/cloud-angular';
+
 
 @IonicPage()
 @Component({
@@ -19,13 +21,23 @@ export class WallPage {
   private isInfinityLoading: Boolean;
 
   constructor(private loadingCtrl: LoadingController, private uploadService: UploadService,
-              private authService: AuthService) {
+              private authService: AuthService, private push: Push) {
   }
 
   ionViewDidLoad(): void {
     this.loadCount = 2;
     this.currentUser = this.authService.currentUser;
     this.loadItems().then(() => this.isLoaded = true);
+
+    //  this.push.register().then((t: PushToken) => {
+    //           return this.push.saveToken(t);}).then((t: PushToken) => {
+    //             console.log('Token saved:', t.token);
+    //           });
+
+    //           this.push.rx.notification()
+    //     .subscribe((msg) => {   
+    //       alert(msg.title + ': ' + msg.text);
+    //     });
   }
 
   private loadItems(): Promise<void> {

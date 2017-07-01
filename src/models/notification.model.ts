@@ -8,4 +8,5 @@ export class NotificationModel extends BaseModel {
     link: string;
     linkKey: string;
     createdAt: Date;
+    isSystem: Boolean;
 }

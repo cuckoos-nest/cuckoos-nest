@@ -4,7 +4,7 @@ import { UploadService } from './../../services/upload.service';
 import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
 import { LikeService } from './../../services/like.service';
-import { NavParams, ModalController, ActionSheetController, AlertController, NavController } from 'ionic-angular';
+import { NavParams, ModalController, ActionSheetController, AlertController, NavController, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { UserModel } from './../../models/user.model';
 import { PhotoModel } from './../../models/photo.model';
@@ -32,7 +32,7 @@ export class WallItemComponent implements OnInit {
               private actionSheetCtrl: ActionSheetController, private nav: NavController,
               private modalCtrl: ModalController, private photoService: PhotoService,
               private userService: UserService, private uploadService: UploadService,
-              private authService: AuthService) {
+              private authService: AuthService, private toastCtrl: ToastController) {
     if (this.navParams.get('upload')) {
       this.upload = this.navParams.get('upload');
     }
@@ -95,6 +95,16 @@ export class WallItemComponent implements OnInit {
       upload: this.upload
     });
     commentsModal.present();
+  }
+
+  private report() {
+    this.photoService.reportPhoto(this.upload.$key);
+      let toast = this.toastCtrl.create({
+                        message: `Your report has been sent`,
+                        duration: 3000,
+                        position: 'top'
+                    });
+                    toast.present();
   }
 
   private showLikers() {
@@ -174,7 +184,7 @@ export class WallItemComponent implements OnInit {
       role: 'destructive',
       text: 'Report', 
       handler: () => {
-
+          this.report();
       }
     });
 

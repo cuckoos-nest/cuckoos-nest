@@ -10,5 +10,6 @@
     "CATEGORIES_IM_FOLLOWING": "Categories I'm Following",
 
     "NOTIFICATION_LIKEYOURUPLOAD": "liked your cuckoo.",
-    "NOTIFICATION_FOLLOWINGYOU": "is now following you"
+    "NOTIFICATION_FOLLOWINGYOU": "is now following you",
+    "NOTIFICATION_REPORT": "your Cuckoo has been deleted by administration consideration"
 }
