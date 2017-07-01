@@ -67,4 +67,11 @@ export class PhotoService {
             .map(keys => keys.map(key => this.userService.get(key)))
             .switchMap(x => x.length == 0 ? Observable.of(x) : Observable.combineLatest(x));
     }
+
+    public reportPhoto(photoKey: string) {
+
+        
+
+        this.af.database.object(`/reports/${photoKey}/${this.authService.currentUser.$key}`).set(true);
+    }
 }

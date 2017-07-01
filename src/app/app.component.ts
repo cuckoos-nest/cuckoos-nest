@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from 'ng2-translate';
 
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,7 +20,7 @@ export class MyApp {
     translate.use('en');
 
     platform.ready().then(() => {
-
+  
     });
   }
 
@@ -33,6 +35,16 @@ export class MyApp {
           alert("Login failed. Reload to try again. (Temp message)");
         }
       });
+
+      // this.push.register().then((t: PushToken) => {
+      //         return this.push.saveToken(t);}).then((t: PushToken) => {
+      //           console.log('Token saved:', t.token);
+      //         });
+
+      //         this.push.rx.notification()
+      //   .subscribe((msg) => {
+      //     alert(msg.title + ': ' + msg.text);
+      //   });
   }
 }
 

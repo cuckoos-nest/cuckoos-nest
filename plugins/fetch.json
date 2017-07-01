@@ -65,5 +65,15 @@
             "APP_ID": "1852328261703414",
             "APP_NAME": "Cukoos Nest"
         }
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@1.10.5"
+        },
+        "is_top_level": true,
+        "variables": {
+            "SENDER_ID": "374424090153"
+        }
     }
 }
