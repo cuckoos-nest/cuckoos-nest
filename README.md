@@ -2,4 +2,5 @@
 A fun and likable app for mimicking images
 
 ## Overview
-// todo
+
+![Homepage](http://eliran.net/cuckoo-images/main.png)
