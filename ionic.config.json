@@ -1,6 +1,8 @@
 {
   "name": "cuckoosnest3",
   "app_id": "fcb642d2",
-  "v2": true,
-  "typescript": true
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }
