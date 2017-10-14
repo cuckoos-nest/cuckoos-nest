@@ -24,7 +24,7 @@ This project uses Ionic 3 and Node v8.6.0, for best results, you probably want t
 - Install Ionic 3, by running: `$ npm i -g ionic`
 - Clone the project and go to the project's directory
 - Run `$ npm i` to install all the dependencies
-- Run `$ ionic serv` to run the project, and navigate your browser to: http://localhost:8100
+- Run `$ ionic serve` to run the project, and navigate your browser to: http://localhost:8100
 - Now, you probably want to enter Chrome's developer mode and simulate mobile resolution.
 
 ## Software Design
